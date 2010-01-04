@@ -8,6 +8,8 @@ Compatible with all popular browsers (IE7/8, Firefox, Chrome, Safari).
 Requires Prototype 1.6.1 or later.  If you use an earlier version, you'll probably have trouble getting
 the calendar styles to show up on IE8.
 
+Blog post: http://www.maintaino.com/nuts-and-bolts/2010/01/04/building-a-calendar-datepicker-for-rails/
+
 Usage
 =====
 
