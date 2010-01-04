@@ -1,0 +1,45 @@
+Calendar DatePicker
+===================
+
+Provides a simple pop-up calendar date picker.
+
+Compatible with all popular browsers (IE7/8, Firefox, Chrome, Safari).
+
+Requires Prototype 1.6.1 or later.  If you use an earlier version, you'll probably have trouble getting
+the calendar styles to show up on IE8.
+
+Usage
+=====
+
+First, include the Prototype library and the DatePicker JavaScript in your page header:
+
+<%= javascript_include_tag 'prototype' %>
+<%= javascript_include_tag 'datepicker' %>
+
+Then, just call the date_picker_text_field method on the default form builder for any date attribute:
+
+<% form_for(@task) do |f| %>
+  <%= f.date_picker_text_field :due_date %>
+<% end %>
+
+The date_picker_text_field method can take all the same options as a regular text_field:
+
+<%= f.date_picker_text_field :due, :size => 9, :maxlength => 10 %>
+
+Customization
+=============
+
+To modify the calendar styles, add the :skip_style flag to the date_picker_text_field call and
+then add selectors for the following CSS classes:
+
+.datePicker
+.changeMonthLink
+.monthName
+.weekdayName
+.day
+.dayInMonth
+.dayOutsideMonth
+.daySelected
+.today
+
+The default style definitions can be found in calendar_date_picker.rb in the plugin
