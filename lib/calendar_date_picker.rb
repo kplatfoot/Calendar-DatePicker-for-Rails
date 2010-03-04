@@ -8,17 +8,15 @@ module ActionView
       def date_picker_text_field(object_name, method, tag_options = {})
         skip_style = tag_options.delete :skip_style
         tag_options[:autocomplete] = 'off'
-        textboxId = "#{object_name}_#{method}"
-
+        
+        # Creates a text field for manual entry of dates.  Accepts a variety of formats (e.g., 2/18/1982, 1982-02-07, November 30th, 1957).       
+        text_field = InstanceTag.new(object_name, method, self, tag_options.delete(:object))
+        text_field_id = text_field.send(:tag_id)
+        
         (skip_style ? "" : date_picker_stylesheet) +
-         date_text_field(object_name, method, tag_options) + 
-         content_tag("div", "", :id => "#{textboxId}_datepicker", :class => 'datePicker', :style => 'display: none;') + 
-         javascript_tag("new DatePicker('#{textboxId}');")
-      end
-      
-      # Creates a text field for manual entry of dates.  Accepts a variety of formats (e.g., 2/18/1982, 1982-02-07, November 30th, 1957).
-      def date_text_field(object_name, method, options = {})
-        InstanceTag.new(object_name, method, self, options.delete(:object)).to_date_text_field_tag(options)
+         text_field.to_date_text_field_tag(tag_options) + 
+         content_tag("div", "", :id => "#{text_field_id}_datepicker", :class => 'datePicker', :style => 'display: none;') + 
+         javascript_tag("new DatePicker('#{text_field_id}');")
       end
       
       private
