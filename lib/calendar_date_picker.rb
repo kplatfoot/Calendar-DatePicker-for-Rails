@@ -11,7 +11,7 @@ module ActionView
         
         # Creates a text field for manual entry of dates.  Accepts a variety of formats (e.g., 2/18/1982, 1982-02-07, November 30th, 1957).       
         text_field = InstanceTag.new(object_name, method, self, tag_options.delete(:object))
-        text_field_id = text_field.send(:tag_id)
+        text_field_id = tag_options[:id] || text_field.send(:tag_id)
         
         (skip_style ? "" : date_picker_stylesheet) +
          text_field.to_date_text_field_tag(tag_options) + 
