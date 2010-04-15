@@ -7,6 +7,7 @@ function DatePicker(textboxId){
   this.textbox.observe("focus", this.onFocus.bindAsEventListener(this));
   this.textbox.observe("click", this.onClick.bindAsEventListener(this));
   this.textbox.observe("blur", this.onBlur.bindAsEventListener(this));
+  this.textbox.observe("keydown", this.onKeyPress.bindAsEventListener(this));
   this.div.observe("click", this.onDivClick.bindAsEventListener(this));
 }
 
@@ -89,6 +90,15 @@ DatePicker.prototype = {
   
   onBlur: function(event){
     this.hide();
+  },
+  
+  onKeyPress: function(event) {
+    switch (event.keyCode) {
+      case Event.KEY_ESC:
+        this.hide();
+        Event.stop(event);
+        return;
+    }
   },
   
   hide: function(){
